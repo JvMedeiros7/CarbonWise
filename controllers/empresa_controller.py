@@ -13,6 +13,52 @@ from database.db import banco_dados
 # PESSOA 3: Cadastro Inicial (Create)
 # ==============================================================================
 def cadastrar_empresa(cnpj: str, nome: str, frota_str: str) -> bool:
+    
+    print("\n===== CADASTRO DE EMPRESA =====")
+    cnpj = input("Digite o CNPJ da empresa: ").strip()
+    
+    if cnpj in banco_dados:
+        print(f"Erro: CNPJ '{cnpj}' já cadastrado.")
+        return False
+
+    if not cnpj:
+        print("Erro: CNPJ não pode ser vazio.")
+        return
+
+    nome = input("Digite o nome fantasia da empresa: ").strip()
+
+    if not nome:
+        print("Erro: Nome não pode ser vazio.")
+        return
+
+    frota_str = input("Digite a quantidade de veículos da frota: ").strip()
+    try:
+        frota = int(frota_str)
+    except ValueError:
+        print(f"Erro: '{frota_str}' não é um número inteiro válido para a frota.")
+        return False
+
+    sucesso = cadastrar_empresa(cnpj, nome, frota_str)
+
+    if sucesso:
+        print(f"\n✔ Cadastro realizado com sucesso!")
+        print(f"   CNPJ  : {cnpj}")
+        print(f"   Nome  : {nome}")
+        print(f"   Frota : {frota_str} veículos")
+    else:
+        print("\n✘ Cadastro não realizado. Verifique os erros acima.")
+    
+
+    banco_dados[cnpj] = {
+        "nome": nome,
+        "frota": frota_str,
+        "consumos": []
+    }
+
+    print(f"Empresa '{nome}' cadastrada com sucesso!")
+    return True
+
+
     """
     Função da Pessoa 3: Cadastra uma nova empresa no dicionário 'banco_dados'.
     
