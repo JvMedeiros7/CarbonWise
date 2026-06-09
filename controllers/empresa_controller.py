@@ -55,8 +55,6 @@ def cadastrar_empresa(cnpj: str, nome: str, frota_str: str) -> bool:
         "consumos": []
     }
 
-    print(f"Empresa '{nome}' cadastrada com sucesso!")
-    return True
 
 
     """
@@ -78,8 +76,7 @@ def cadastrar_empresa(cnpj: str, nome: str, frota_str: str) -> bool:
         3. Criar a estrutura interna da empresa (ex: dicionário com chaves 'nome',
            'frota' e uma lista vazia de 'consumos').
     """
-    # TODO: Implementar try-except para frota e verificação de duplicidade de CNPJ
-    pass
+    
 
 
 # ==============================================================================
